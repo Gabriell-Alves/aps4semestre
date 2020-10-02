@@ -16,11 +16,24 @@ public class CoordinateService {
 	@Autowired
 	private CoordinateRepository repository;
 	
+	@Autowired
+	private OrdinationService ordinationService;
+	
 	@Transactional
 	public List<Coordinate> findAll(){
 		return repository.findAll();
 	}
 	
-	
+	public List<Coordinate> FindByOrdination(Long id){
+		List<Coordinate> list = findAll();
+		ordinationService.sort(list, id);
+		return list;
+	}
 
 }
+
+/* Criar um metodo
+ * PageRequest pageRequest = PageRequest.of(2, 50, Direction.valueOf("ASC"), "");
+ * Page<Coordinate> ord = new PageImpl<Coordinate>(list, pageRequest, list.size());
+ */
+ 

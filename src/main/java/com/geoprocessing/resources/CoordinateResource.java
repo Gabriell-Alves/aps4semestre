@@ -22,12 +22,6 @@ public class CoordinateResource {
 	@Autowired
 	private CoordinateService service;
 	
-	@Autowired
-	private SelectionSort selectionSortSevice;
-	
-	@Autowired
-	private OrdinationService OrdinationService;
-	
 	@GetMapping
 	public ResponseEntity<List<Coordinate>> findAll(){
 		return ResponseEntity.ok().body(service.findAll());
@@ -35,11 +29,8 @@ public class CoordinateResource {
 	
 	@GetMapping(value = "/sort/{id}")
 	public ResponseEntity<List<Coordinate>> findAllSelectionSort(@PathVariable Long id){
-		Ordination ordination = OrdinationService.findById(id);
-		List<Coordinate> newList = selectionSortSevice.ordination100(service.findAll());
-		ordination.setElements100(selectionSortSevice.getTimeOrdenation100());
-		
-		return ResponseEntity.ok().body(newList);
+		List<Coordinate> list = service.FindByOrdination(id);
+		return ResponseEntity.ok().body(list);
 	}
 
 }
