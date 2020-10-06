@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.geoprocessing.entities.Coordinate;
@@ -24,16 +26,10 @@ public class CoordinateService {
 		return repository.findAll();
 	}
 	
-	public List<Coordinate> FindByOrdination(Long id){
+	public Page<Coordinate> FindByOrdination(Long id, PageRequest pageable, String orderBy){
 		List<Coordinate> list = findAll();
-		ordinationService.sort(list, id);
-		return list;
+		Page<Coordinate> page = ordinationService.sort(list, id, pageable, orderBy);
+		return page;
 	}
 
 }
-
-/* Criar um metodo
- * PageRequest pageRequest = PageRequest.of(2, 50, Direction.valueOf("ASC"), "");
- * Page<Coordinate> ord = new PageImpl<Coordinate>(list, pageRequest, list.size());
- */
- 
