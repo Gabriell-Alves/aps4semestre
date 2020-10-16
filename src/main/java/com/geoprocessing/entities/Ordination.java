@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.geoprocessing.entities.enuns.DataSituation;
 import com.geoprocessing.entities.enuns.SortName;
 
 @Entity(name = "tb_ordination")
@@ -18,7 +17,7 @@ public class Ordination implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private SortName name;
-	private DataSituation dataSituation;
+	//private DataSituation dataSituation;
 	private Long elements100;
 	private Long elements1000;
 	private Long elements10000;
@@ -28,12 +27,11 @@ public class Ordination implements Serializable {
 		
 	}
 
-	public Ordination(Long id, SortName name, DataSituation dataSituation, Long elements100, Long elements1000,
+	public Ordination(Long id, SortName name, Long elements100, Long elements1000,
 			Long elements10000, Long elements100000) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.dataSituation = dataSituation;
 		this.elements100 = elements100;
 		this.elements1000 = elements1000;
 		this.elements10000 = elements10000;
@@ -54,14 +52,6 @@ public class Ordination implements Serializable {
 
 	public void setName(SortName name) {
 		this.name = name;
-	}
-
-	public DataSituation getDataSituation() {
-		return dataSituation;
-	}
-
-	public void setDataSituation(DataSituation dataSituation) {
-		this.dataSituation = dataSituation;
 	}
 
 	public Long getElements100() {

@@ -999,4 +999,6 @@ insert into TB_COORDINATE (latitude, longitude, url_image, date, situation) valu
 insert into TB_COORDINATE (latitude, longitude, url_image, date, situation) values (-7904643646, 5453036830, 'http://dummyimage.com/174x243.jpg/cc0000/ffffff', '2020-04-16', 2);
 insert into TB_COORDINATE (latitude, longitude, url_image, date, situation) values (-76157059, -1905547284, 'http://dummyimage.com/142x196.jpg/dddddd/000000', '2020-09-18', 0);
 
-INSERT INTO TB_ORDINATION(name, data_situation, elements100, elements1000, elements10000, elements100000) VALUES(0, 1, 10, 20, 30, 40);
+INSERT INTO TB_ORDINATION(name, elements100, elements1000, elements10000, elements100000) VALUES(0, 10, 20, 30, 40);
+INSERT INTO TB_ORDINATION(name, elements100, elements1000, elements10000, elements100000) VALUES(1, 10, 20, 30, 40);
+INSERT INTO TB_ORDINATION(name, elements100, elements1000, elements10000, elements100000) VALUES(2, 10, 20, 30, 40);

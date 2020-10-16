@@ -14,39 +14,54 @@ import org.springframework.stereotype.Service;
 import com.geoprocessing.entities.Coordinate;
 import com.geoprocessing.entities.Ordination;
 import com.geoprocessing.repositories.OrdinationRepository;
+import com.geoprocessing.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class OrdinationService {
-	
+
 	@Autowired
 	private OrdinationRepository repository;
-	
+
 	@Autowired
 	private SelectionSort selectionSort;
+
+	@Autowired
+	private BubbleSort bubbleSort;
+	
+	@Autowired
+	private QuickSort quickSort;
+
+	@Transactional
+	public Ordination findById(Long id) {
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ordination not found"));
+	}
 	
 	@Transactional
-	public Ordination findById(Long id){
-		return repository.findById(id).get();
+	public List<Ordination> findAll(){
+		return repository.findAll();
 	}
-
-	public Page<Coordinate> sort(List<Coordinate> list, Long id, PageRequest pageable, String orderBy ) {
-		Ordination newObj = repository.findById(id).get();
-		List<Coordinate> newList= null;
+	
+	@Transactional
+	public Page<Coordinate> sort(List<Coordinate> list, Long id, PageRequest pageable, String orderBy) {
+		Ordination newObj = findById(id);
 		switch (newObj.getName()) {
 		case SELECTION_SORT:
-			newList = selectionSort.addList(list, newObj, orderBy);
+			selectionSort.addList(list, newObj, orderBy);
 			break;
 		case BUBBLE_SORT:
-
+			bubbleSort.addList(list, newObj, orderBy);
+			break;
+		case QUICK_SORT:
+			quickSort.addList(list, newObj, orderBy);
 			break;
 		default:
 			break;
 		}
 		repository.save(newObj);
-		return listToPage(newList, pageable);
+		return listToPage(list, pageable);
 	}
-	
-	public Page<Coordinate> listToPage(List<Coordinate> list, PageRequest pageable){
+
+	public Page<Coordinate> listToPage(List<Coordinate> list, PageRequest pageable) {
 		List<Coordinate> newList = list.stream()
 				.skip(pageable.getPageSize() * pageable.getPageNumber())
 				.limit(pageable.getPageSize())

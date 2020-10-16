@@ -1,5 +1,5 @@
 package com.geoprocessing.entities.enuns;
 
 public enum SortName {
-	SELECTION_SORT, BUBBLE_SORT;
+	SELECTION_SORT, BUBBLE_SORT, QUICK_SORT;
 }
