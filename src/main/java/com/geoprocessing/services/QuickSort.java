@@ -50,7 +50,7 @@ public class QuickSort implements OrdinationInterface {
 		obj.setElements100(ordination(coordinates.stream().limit(100).collect(Collectors.toList()), orderBy));
 		obj.setElements1000(ordination(coordinates.stream().limit(1000).collect(Collectors.toList()), orderBy));
 		obj.setElements10000(ordination(coordinates.stream().limit(10000).collect(Collectors.toList()), orderBy));
-		obj.setElements100000(ordination(coordinates.stream().limit(100000).collect(Collectors.toList()), orderBy));
+		obj.setElements5000(ordination(coordinates.stream().limit(5000).collect(Collectors.toList()), orderBy));
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class QuickSort implements OrdinationInterface {
 		int i = start + 1, f = end;
 		while (i <= f) {
 
-			if (list.get(i).getSituation().compareTo(pivot.getSituation()) >= 0)
+			if (list.get(i).getSituation().compareTo(pivot.getSituation()) < 0)
 				i++;
 			else if (pivot.getSituation().compareTo(list.get(f).getSituation()) < 0)
 				f--;
@@ -172,14 +172,15 @@ public class QuickSort implements OrdinationInterface {
 			quickSortPerId(list, pivotPosition + 1, end);
 		}
 	}
+	
 
 	private int separatePerId(List<Coordinate> list, int start, int end) {
 		Coordinate pivot = list.get(start);
 		int i = start + 1, f = end;
 		while (i <= f) {
-			if (list.get(i).getLatitude() <= pivot.getLatitude())
+			if (list.get(i).getId() <= pivot.getId())
 				i++;
-			else if (pivot.getLatitude() < list.get(f).getLatitude())
+			else if (pivot.getId() < list.get(f).getId())
 				f--;
 			else {
 				Coordinate swap = list.get(i);

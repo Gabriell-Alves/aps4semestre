@@ -17,25 +17,24 @@ public class Ordination implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private SortName name;
-	//private DataSituation dataSituation;
 	private Long elements100;
 	private Long elements1000;
 	private Long elements10000;
-	private Long elements100000;
+	private Long elements5000;
 	
 	public Ordination() {
 		
 	}
 
 	public Ordination(Long id, SortName name, Long elements100, Long elements1000,
-			Long elements10000, Long elements100000) {
+			Long elements10000, Long elements5000) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.elements100 = elements100;
 		this.elements1000 = elements1000;
 		this.elements10000 = elements10000;
-		this.elements100000 = elements100000;
+		this.elements5000 = elements5000;
 	}
 
 	public Long getId() {
@@ -78,12 +77,12 @@ public class Ordination implements Serializable {
 		this.elements10000 = elements10000;
 	}
 
-	public Long getElements100000() {
-		return elements100000;
+	public Long getElements5000() {
+		return elements5000;
 	}
 
-	public void setElements100000(Long elements100000) {
-		this.elements100000 = elements100000;
+	public void setElements5000(Long elements5000) {
+		this.elements5000 = elements5000;
 	}
 
 	@Override

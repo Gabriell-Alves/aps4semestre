@@ -50,7 +50,7 @@ public class SelectionSort implements OrdinationInterface{
 		obj.setElements100(ordination(coordinates.stream().limit(100).collect(Collectors.toList()), orderBy));
 		obj.setElements1000(ordination(coordinates.stream().limit(1000).collect(Collectors.toList()), orderBy));
 		obj.setElements10000(ordination(coordinates.stream().limit(10000).collect(Collectors.toList()), orderBy));
-		obj.setElements100000(ordination(coordinates.stream().limit(100000).collect(Collectors.toList()), orderBy));
+		obj.setElements5000(ordination(coordinates.stream().limit(5000).collect(Collectors.toList()), orderBy));
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public class SelectionSort implements OrdinationInterface{
 			Integer smaller = i;
 		    for (int j = smaller + 1; j < list.size(); j++) {
 		    	//Compare the elements
-		       if (list.get(j).getSituation().compareTo( list.get(smaller).getSituation()) > 0) {
+		       if (list.get(j).getSituation().compareTo( list.get(smaller).getSituation()) <= 0) {
 		    	   smaller = j;
 		       }
 		    }
